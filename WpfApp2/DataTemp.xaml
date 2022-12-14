@@ -1,0 +1,96 @@
+﻿<Window x:Class="WpfApp2.DataTemp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="DataTemp"
+        Height="450"
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ListBox>
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="Gray"
+                            Height="10"
+                            Width="10"
+                            Margin="0 0 5 0" />
+                    <TextBlock Text="Gray" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="Gray"
+                            Height="10"
+                            Width="10"
+                            Margin="0 0 5 0" />
+                    <TextBlock Text="Gray" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="Gray"
+                            Height="10"
+                            Width="10"
+                            Margin="0 0 5 0" />
+                    <TextBlock Text="Gray" />
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+
+        <!--前端显示的数据是通过后端来获取的-->
+        <ListBox Grid.Row="1"
+                 x:Name="lsDataTemp">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="{Binding code}"
+                                Height="10"
+                                Width="10"
+                                Margin="0 0 5 0" />
+                        <TextBlock Text="{Binding index}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <DataGrid Grid.Row="1"
+                  Grid.Column="1"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AutoGenerateColumns="False"
+                  x:Name="grid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding index}"
+                                    Header="Index" />
+                <DataGridTextColumn Binding="{Binding code}"
+                                    Header="Code" />
+                <DataGridTemplateColumn Header="Action">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="{Binding code}"
+                                        Height="10"
+                                        Width="10"
+                                        Margin="0 0 5 0" />
+                                <TextBlock Text="{Binding index}" />
+                                <Button Content="执行"
+                                        Margin="5 0 0 0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
